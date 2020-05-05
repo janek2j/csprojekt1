@@ -1,0 +1,18 @@
+﻿<Window x:Class="KoszykZakupowy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KoszykZakupowy"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <TextBox x:Name="textbox1" Text="Domyślny wpis..." Height="50" Background="#FFDDDDDD"/>
+        <TextBlock x:Name="textblock1" Text="{Binding ElementName=textbox1, Path=Text, Mode=Default}" Background="#FF933D3D" Height="100"/>
+        <Slider x:Name="slider1" IsSnapToTickEnabled="True" Minimum="0" Maximum="100" Margin="238,20,226,20" SmallChange="1" HorizontalAlignment="Center" Width="328" TickFrequency="0"/>
+        <TextBox x:Name="slider1_value" Height="32"></TextBox>
+        <!--<Button Click="Button_uruchom" Margin="312,350,313,23" Content="Przycisk" Background="#FF337D93"/>-->
+        <Slider x:Name="slider2"  Value="{Binding Text, ElementName=slider1_value}" Minimum="0" Maximum="1000" IsSnapToTickEnabled="True"/>
+
+    </StackPanel>
+</Window>
