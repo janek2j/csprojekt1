@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace KoszykZakupowy
 {
@@ -20,33 +22,41 @@ namespace KoszykZakupowy
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<Produkt> produkty = new ObservableCollection<Produkt>();
+
         public MainWindow()
         {
+
+            ArrayList produkty = new ArrayList();
             InitializeComponent();
+            
 
             Produkt produkt1 = new Produkt("wkręt 5/35", 0.03m);
-            Produkt produkt2 = new Produkt("produtk2", 2m);
-            Produkt produkt3 = new Produkt("produtk3", 6m);
+            Produkt produkt2 = new Produkt("produkt2", 2m);
+            Produkt produkt3 = new Produkt("produkt3", 6m);
+            Produkt produkt4 = new Produkt("produkt4", 8m);
 
-            produkt1.Nazwa = "produkt1";
+            produkty.Add(produkt1);
+            produkty.Add(produkt2);
+            produkty.Add(produkt3);
 
-            Console.WriteLine(produkt1.ToString());
+            ComboBoxProdukty.ItemsSource = produkty;
 
-
-            Simulation simulation = new Simulation();
-            MyObject myObject = new MyObject(simulation);
-            MySecondObject mySecondObject = new MySecondObject(simulation);
-
-            simulation.simulate();
-
-
-        }
-
-        private void Button_uruchom(object sender, RoutedEventArgs e)
-        {
+            foreach (Produkt p in produkty)
+            {
+                if (p != null)
+                {
+                    //ComboBoxProdukty.Item
+                }
+            }
            
+            //Simulation simulation = new Simulation();
+            //MyObject myObject = new MyObject(simulation);
+            //MySecondObject mySecondObject = new MySecondObject(simulation);
 
-            textblock1.Text = "sgfkhdsfk";
+            //simulation.simulate();
+
         }
+
     }
 }

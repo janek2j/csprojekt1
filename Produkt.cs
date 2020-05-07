@@ -8,12 +8,11 @@ namespace KoszykZakupowy
 {
     class Produkt
     {
-        private string nazwa;
         private decimal cena;
 
         public Produkt(string nazwa, decimal cena)
         {
-            this.nazwa = nazwa;
+            this.Nazwa = nazwa;
             this.cena = cena;
         }
 
@@ -22,7 +21,7 @@ namespace KoszykZakupowy
 
         public override string ToString()
         {
-            return "PRODUKT: " + Nazwa + ", cena: " + Cena;
+            return Nazwa + ", " + Cena;
         }
      
     }

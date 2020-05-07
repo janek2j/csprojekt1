@@ -5,14 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoszykZakupowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        <TextBox x:Name="textbox1" Text="Domyślny wpis..." Height="50" Background="#FFDDDDDD"/>
-        <TextBlock x:Name="textblock1" Text="{Binding ElementName=textbox1, Path=Text, Mode=Default}" Background="#FF933D3D" Height="100"/>
-        <Slider x:Name="slider1" IsSnapToTickEnabled="True" Minimum="0" Maximum="100" Margin="238,20,226,20" SmallChange="1" HorizontalAlignment="Center" Width="328" TickFrequency="0"/>
-        <TextBox x:Name="slider1_value" Height="32"></TextBox>
-        <!--<Button Click="Button_uruchom" Margin="312,350,313,23" Content="Przycisk" Background="#FF337D93"/>-->
-        <Slider x:Name="slider2"  Value="{Binding Text, ElementName=slider1_value}" Minimum="0" Maximum="1000" IsSnapToTickEnabled="True"/>
+        Title="MainWindow" Height="480" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="30" Margin="0,0,0,0" VerticalAlignment="Top" Background="#FFB6ABAB">
+            <Button>Podsumowanie koszyka</Button>
+            <Button>Wyślij zamówienie</Button>
+            <Button>Podsumowanie zamównienia</Button>
+        </Menu>
+        <Button DockPanel.Dock="Bottom">Bottom</Button>
+        <Button DockPanel.Dock="Left" Width="100">Left</Button>
+        <Canvas>
+            <ComboBox x:Name="ComboBoxProdukty" Width="196" Canvas.Left="10" Canvas.Top="10" Height="30">
 
-    </StackPanel>
+            </ComboBox>
+            <ListBox x:Name="ListBoxKoszyk" Height="274" Width="245" Canvas.Left="312" Canvas.Top="32"></ListBox>
+            <Button x:Name="ButtonDodaj" Canvas.Left="60" Canvas.Top="60" Width="120" Padding="5">Dodaj do koszyka</Button>
+            <Button x:Name="ButtonUsun" Canvas.Left="60" Canvas.Top="100" Width="120" Padding="5">Usuń z koszyka</Button>
+            <Button x:Name="ButtonIlosc" Canvas.Left="60" Canvas.Top="140" Width="120" Padding="5">Zmień ilość</Button>
+            <Button x:Name="ButtonZamow" Canvas.Left="60" Canvas.Top="180" Width="120" Padding="5">Wyślij zamówienie</Button>
+
+
+        </Canvas>
+    </DockPanel>
 </Window>
