@@ -86,7 +86,7 @@ namespace KoszykZakupowy
 
         }
 
-        
+
 
         private void ButtonDodajProdukt_Click(object sender, RoutedEventArgs e)
         {
@@ -120,8 +120,17 @@ namespace KoszykZakupowy
         private void ListBoxListaElementow_SelectionChanged(object sender, EventArgs e)
         {
             ElementKoszyka elko = (ElementKoszyka)ListBoxListaElementow.SelectedItem;
-            TextBoxProdukt.Text = elko.Produkt.Nazwa;
-            TextBoxIlosc.Text = Convert.ToString(elko.Ilosc);
+
+            try
+            {
+                TextBoxProdukt.Text = elko.Produkt.Nazwa;
+                TextBoxIlosc.Text = Convert.ToString(elko.Ilosc);
+            }
+            catch
+            {
+
+            }
+
         }
 
         private void ListBoxListaImion_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -138,17 +147,19 @@ namespace KoszykZakupowy
 
             int index = ListBoxListaElementow.SelectedIndex;
 
-            string nazwaProduktu = elko.Produkt.Nazwa;
-            double cenaProduktu = elko.Produkt.Cena;
-            int ilosc = elko.Ilosc;
+            if (index != -1)
+            {
+                string nazwaProduktu = elko.Produkt.Nazwa;
+                double cenaProduktu = elko.Produkt.Cena;
+                int ilosc = elko.Ilosc;
 
-            nowaIlosc = Convert.ToInt32(TextBoxIlosc.Text);
+                nowaIlosc = Convert.ToInt32(TextBoxIlosc.Text);
 
-            listaElementyKoszyka.RemoveAt(index);
-            listaElementyKoszyka.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), ilosc));
-            //ListBoxListaElementow.Items.RemoveAt(index);
-            //ListBoxListaElementow.Items.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), ilosc));
-
+                listaElementyKoszyka.RemoveAt(index);
+                listaElementyKoszyka.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), nowaIlosc));
+                //ListBoxListaElementow.Items.RemoveAt(index);
+                //ListBoxListaElementow.Items.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), ilosc));
+            }
         }
     }
 }
