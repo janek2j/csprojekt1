@@ -23,6 +23,7 @@ namespace KoszykZakupowy
     public partial class MainWindow : Window
     {
         //ObservableCollection<Produkt> produkty = new ObservableCollection<Produkt>();
+        ObservableCollection<ElementKoszyka> listaElementyKoszyka = new ObservableCollection<ElementKoszyka>();
 
         public MainWindow()
         {
@@ -44,6 +45,21 @@ namespace KoszykZakupowy
             produkty.Add(produkt4);
             produkty.Add(produkt5);
             produkty.Add(produkt6);
+
+            ElementKoszyka elko1, elko2, elko3;
+            elko1.produkt = produkt1;
+            elko1.ilosc = 1;
+            elko2.produkt = produkt2;
+            elko2.ilosc = 12;
+            elko3.produkt = produkt3;
+            elko3.ilosc = 5;
+
+
+            listaElementyKoszyka.Add(elko1);
+            listaElementyKoszyka.Add(elko2);
+            listaElementyKoszyka.Add(elko3);
+
+            ListBoxListaImion.ItemsSource = listaElementyKoszyka;
 
             //ComboBoxProdukty.ItemsSource = produkty;
 
@@ -104,10 +120,10 @@ namespace KoszykZakupowy
                 ListBoxKoszyk.Items.RemoveAt(k);
         }
 
-        private void ListaImion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBoxListaImion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var str = ListaImion.SelectedItem.ToString();
-            MessageBox.Show(ListaImion.SelectedIndex.ToString() + " ---- " + str);
+            var str = ListBoxListaImion.SelectedItem.ToString();
+            //MessageBox.Show(ListBoxListaImion.SelectedIndex.ToString() + " ---- " + str);
 
         }
     }

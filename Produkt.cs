@@ -10,11 +10,13 @@ namespace KoszykZakupowy
     {
         //private int numerId;
         private decimal cena;
+        private string opis; //??????
 
         public Produkt(string nazwa, decimal cena)
         {
             this.Nazwa = nazwa;
             this.cena = cena;
+            this.opis = "---";
         }
 
         public string Nazwa { get; set; }

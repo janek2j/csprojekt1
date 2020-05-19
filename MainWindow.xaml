@@ -18,9 +18,17 @@
             <ComboBox x:Name="ComboBoxProdukty" Width="196" Canvas.Left="10" Canvas.Top="34" Height="30">
 
             </ComboBox>
-            <ListBox x:Name="ListaImion" Height="66" Width="313" Canvas.Left="322" Canvas.Top="240" SelectionMode="Extended" SelectionChanged="ListaImion_SelectionChanged">
-                <ListBoxItem>Imie1</ListBoxItem>
-                <ListBoxItem>Imie2</ListBoxItem>
+            <ListBox x:Name="ListBoxListaImion" Height="66" Width="313" Canvas.Left="322" Canvas.Top="240" SelectionMode="Extended" SelectionChanged="ListBoxListaImion_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding}" />
+                            <Label Content="{Binding}"></Label>
+                     
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <!--<ListBoxItem>Imie1</ListBoxItem>-->
             </ListBox>
             <ListBox x:Name="ListBoxKoszyk" Height="176" Width="313" Canvas.Left="322" Canvas.Top="32">
                 <ListBox.ItemContainerStyle>
@@ -44,6 +52,7 @@
             <Button x:Name="ButtonWyswietlSzczegoly" Click="ButtonWyswietlSzczegoly_Click" Canvas.Left="60" Canvas.Top="320">Wyświetl szczegóły produktu</Button>
             <Button x:Name="ButtonWyswietListeProduktow" Click="ButtonWyswietlListeProduktow_Click" Canvas.Left="60" Canvas.Top="348">Wyświetl liste produktow</Button>
             <TextBox x:Name="Ilosc" Width="137" RenderTransformOrigin="8.36,19" Canvas.Left="322" Canvas.Top="348" Height="15"></TextBox>
+            <Label Content="dgfd" Canvas.Left="252" Canvas.Top="118"/>
 
         </Canvas>
     </DockPanel>

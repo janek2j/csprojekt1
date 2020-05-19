@@ -10,6 +10,5 @@ namespace KoszykZakupowy
     {
         public Produkt produkt;
         public int ilosc;
-        public decimal cena; //cena jednostkowa
     }
 }
