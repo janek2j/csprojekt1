@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ElementKoszyka.cs" />
     <Compile Include="ISuma.cs" />
     <Compile Include="Koszyk.cs" />
     <Compile Include="MyObject.cs" />

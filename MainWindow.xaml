@@ -15,15 +15,35 @@
         <Button DockPanel.Dock="Bottom">Bottom</Button>
         <Button DockPanel.Dock="Left" Width="100">Left</Button>
         <Canvas>
-            <ComboBox x:Name="ComboBoxProdukty" Width="196" Canvas.Left="10" Canvas.Top="10" Height="30">
+            <ComboBox x:Name="ComboBoxProdukty" Width="196" Canvas.Left="10" Canvas.Top="34" Height="30">
 
             </ComboBox>
-            <ListBox x:Name="ListBoxKoszyk" Height="274" Width="245" Canvas.Left="312" Canvas.Top="32"></ListBox>
-            <Button x:Name="ButtonDodaj" Canvas.Left="60" Canvas.Top="60" Width="120" Padding="5">Dodaj do koszyka</Button>
-            <Button x:Name="ButtonUsun" Canvas.Left="60" Canvas.Top="100" Width="120" Padding="5">Usuń z koszyka</Button>
-            <Button x:Name="ButtonIlosc" Canvas.Left="60" Canvas.Top="140" Width="120" Padding="5">Zmień ilość</Button>
+            <ListBox x:Name="ListaImion" Height="66" Width="313" Canvas.Left="322" Canvas.Top="240" SelectionMode="Extended" SelectionChanged="ListaImion_SelectionChanged">
+                <ListBoxItem>Imie1</ListBoxItem>
+                <ListBoxItem>Imie2</ListBoxItem>
+            </ListBox>
+            <ListBox x:Name="ListBoxKoszyk" Height="176" Width="313" Canvas.Left="322" Canvas.Top="32">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Padding" Value="2" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontSize" Value="15" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <Button x:Name="ButtonDodaj" Canvas.Left="60" Canvas.Top="78" Width="120" Padding="5" Click="ButtonDodaj_Click">Dodaj do koszyka</Button>
+            <Button x:Name="ButtonUsun" Canvas.Left="60" Canvas.Top="118" Width="120" Padding="5" Click="ButtonUsun_Click">Usuń z koszyka</Button>
+            <Button x:Name="ButtonIlosc" Canvas.Left="515" Canvas.Top="335" Width="120" Padding="5">Zmień ilość</Button>
             <Button x:Name="ButtonZamow" Canvas.Left="60" Canvas.Top="180" Width="120" Padding="5">Wyślij zamówienie</Button>
-
+            <TextBox x:Name="TextBoxProdukt" Width="200" Canvas.Left="10" Canvas.Top="240"></TextBox>
+            <Button x:Name="ButtonDodajProdukt" Padding="5" Canvas.Left="60" Canvas.Top="278" Click="ButtonDodajProdukt_Click">Dodaj produkt</Button>
+            <Button x:Name="ButtonWyswietlSzczegoly" Click="ButtonWyswietlSzczegoly_Click" Canvas.Left="60" Canvas.Top="320">Wyświetl szczegóły produktu</Button>
+            <Button x:Name="ButtonWyswietListeProduktow" Click="ButtonWyswietlListeProduktow_Click" Canvas.Left="60" Canvas.Top="348">Wyświetl liste produktow</Button>
+            <TextBox x:Name="Ilosc" Width="137" RenderTransformOrigin="8.36,19" Canvas.Left="322" Canvas.Top="348" Height="15"></TextBox>
 
         </Canvas>
     </DockPanel>

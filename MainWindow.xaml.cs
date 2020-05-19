@@ -22,34 +22,39 @@ namespace KoszykZakupowy
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Produkt> produkty = new ObservableCollection<Produkt>();
+        //ObservableCollection<Produkt> produkty = new ObservableCollection<Produkt>();
 
         public MainWindow()
         {
 
             ArrayList produkty = new ArrayList();
             InitializeComponent();
-            
+
 
             Produkt produkt1 = new Produkt("wkręt 5/35", 0.03m);
             Produkt produkt2 = new Produkt("produkt2", 2m);
             Produkt produkt3 = new Produkt("produkt3", 6m);
             Produkt produkt4 = new Produkt("produkt4", 8m);
+            Produkt produkt5 = new Produkt("produkt5", 10.01m);
+            Produkt produkt6 = new Produkt("produkt6", 14.21m);
 
             produkty.Add(produkt1);
             produkty.Add(produkt2);
             produkty.Add(produkt3);
+            produkty.Add(produkt4);
+            produkty.Add(produkt5);
+            produkty.Add(produkt6);
 
-            ComboBoxProdukty.ItemsSource = produkty;
+            //ComboBoxProdukty.ItemsSource = produkty;
 
             foreach (Produkt p in produkty)
             {
                 if (p != null)
                 {
-                    //ComboBoxProdukty.Item
+                    ComboBoxProdukty.Items.Add(p);
                 }
             }
-           
+
             //Simulation simulation = new Simulation();
             //MyObject myObject = new MyObject(simulation);
             //MySecondObject mySecondObject = new MySecondObject(simulation);
@@ -58,5 +63,52 @@ namespace KoszykZakupowy
 
         }
 
+        private void ButtonDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            string str;
+            if (ComboBoxProdukty.SelectedItem != null)
+            {
+                str = ComboBoxProdukty.SelectedItem.ToString();
+                ListBoxKoszyk.Items.Add(str);
+
+            }
+
+        }
+
+        private void ButtonDodajProdukt_Click(object sender, RoutedEventArgs e)
+        {
+            string str = TextBoxProdukt.Text;
+            ComboBoxProdukty.Items.Add(str);
+        }
+
+        private void ButtonWyswietlListeProduktow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonWyswietlSzczegoly_Click(object sender, RoutedEventArgs e)
+        {
+            //object li = ListBoxKoszyk.SelectedItem.ToString();  //.Items.CurrentItem;
+            object li = ListBoxKoszyk.SelectedItem.ToString();   //.Items.CurrentItem;
+
+            int k = ListBoxKoszyk.SelectedIndex;
+
+            MessageBox.Show(li.ToString() + ", indeks: " + k);
+
+        }
+
+        private void ButtonUsun_Click(object sender, RoutedEventArgs e)
+        {
+            int k = ListBoxKoszyk.SelectedIndex;
+            if (k != -1)
+                ListBoxKoszyk.Items.RemoveAt(k);
+        }
+
+        private void ListaImion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var str = ListaImion.SelectedItem.ToString();
+            MessageBox.Show(ListaImion.SelectedIndex.ToString() + " ---- " + str);
+
+        }
     }
 }

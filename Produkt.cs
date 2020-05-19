@@ -8,6 +8,7 @@ namespace KoszykZakupowy
 {
     class Produkt
     {
+        //private int numerId;
         private decimal cena;
 
         public Produkt(string nazwa, decimal cena)

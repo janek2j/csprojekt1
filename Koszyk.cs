@@ -8,17 +8,16 @@ namespace KoszykZakupowy
 {
     class Koszyk : ISuma
     {
-        private Produkt[] produkty;
+        private Produkt[] produkt;
 
         public Koszyk(Produkt[] produkty)
         {
-            this.produkty = produkty;
+            //this.elementyKoszyka. = elementyKoszyka;
         }
 
         public double SumaRazem()
         {
-           return 0.0;
+            return 0.0;
         }
-        
     }
 }
