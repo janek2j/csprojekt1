@@ -6,9 +6,33 @@ using System.Threading.Tasks;
 
 namespace KoszykZakupowy
 {
-    struct ElementKoszyka
+    class ElementKoszyka
     {
-        public Produkt produkt;
-        public int ilosc;
+        public Produkt Produkt { get; set; }
+        public int Ilosc { get; set; }
+        private double _podsuma;
+
+        public double Podsuma {
+            get
+            {
+                return _podsuma;
+            }
+            set
+            {
+                _podsuma = Podsumuj();
+            }
+        }
+
+        public ElementKoszyka(Produkt produkt, int ilosc)
+        {
+            Produkt = produkt;
+            Ilosc = ilosc;
+            _podsuma = Podsumuj();
+        }
+
+        public double Podsumuj()
+        {
+            return this.Produkt.Cena * this.Ilosc;
+        }
     }
 }

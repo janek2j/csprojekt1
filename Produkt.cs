@@ -9,23 +9,31 @@ namespace KoszykZakupowy
     class Produkt
     {
         //private int numerId;
-        private decimal cena;
+        private double _cena;
         private string opis; //??????
 
-        public Produkt(string nazwa, decimal cena)
+        public Produkt(string nazwa, double cena)
         {
             this.Nazwa = nazwa;
-            this.cena = cena;
-            this.opis = "---";
+            this._cena = cena;
         }
 
         public string Nazwa { get; set; }
-        public decimal Cena { get; set; }
-
+        public double Cena
+        {
+            get
+            {
+                return _cena;
+            }
+            set
+            {
+                this._cena = Cena;
+            }
+        }
         public override string ToString()
         {
             return Nazwa + ", " + Cena;
         }
-     
+
     }
 }

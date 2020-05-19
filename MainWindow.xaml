@@ -7,30 +7,48 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="800">
     <DockPanel>
-        <Menu DockPanel.Dock="Top" Height="30" Margin="0,0,0,0" VerticalAlignment="Top" Background="#FFB6ABAB">
+        <!--<Menu DockPanel.Dock="Top" Height="30" Margin="0,0,0,0" VerticalAlignment="Top" Background="#FFB6ABAB">
             <Button>Podsumowanie koszyka</Button>
             <Button>Wyślij zamówienie</Button>
             <Button>Podsumowanie zamównienia</Button>
         </Menu>
         <Button DockPanel.Dock="Bottom">Bottom</Button>
-        <Button DockPanel.Dock="Left" Width="100">Left</Button>
+        <Button DockPanel.Dock="Left" Width="100">Left</Button>-->
         <Canvas>
             <ComboBox x:Name="ComboBoxProdukty" Width="196" Canvas.Left="10" Canvas.Top="34" Height="30">
 
             </ComboBox>
-            <ListBox x:Name="ListBoxListaImion" Height="66" Width="313" Canvas.Left="322" Canvas.Top="240" SelectionMode="Extended" SelectionChanged="ListBoxListaImion_SelectionChanged">
+            <ListView x:Name="ListBoxListaElementow" Height="126" Width="312" Canvas.Left="268" Canvas.Top="141" SelectionMode="Extended" SelectionChanged="ListBoxListaElementow_SelectionChanged">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Foreground" Value="#FFDDDDDD"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <!--<Setter Property=""-->
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Produkt" DisplayMemberBinding="{Binding Path=Produkt.Nazwa}" Width="200"/>
+                            <GridViewColumn Header="Ilosc" DisplayMemberBinding="{Binding Path=Ilosc}" Width="50"/>
+                            <GridViewColumn Header="Podsuma" DisplayMemberBinding="{Binding Path=Podsuma}" Width="70"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
                             <TextBlock Text="{Binding}" />
                             <Label Content="{Binding}"></Label>
-                     
+
                         </WrapPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <!--<ListBoxItem>Imie1</ListBoxItem>-->
-            </ListBox>
-            <ListBox x:Name="ListBoxKoszyk" Height="176" Width="313" Canvas.Left="322" Canvas.Top="32">
+            </ListView>
+            <ListBox x:Name="ListBoxKoszyk" Height="84" Width="313" Canvas.Left="267" Canvas.Top="34">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">
                         <Setter Property="Padding" Value="2" />
@@ -45,14 +63,18 @@
             </ListBox>
             <Button x:Name="ButtonDodaj" Canvas.Left="60" Canvas.Top="78" Width="120" Padding="5" Click="ButtonDodaj_Click">Dodaj do koszyka</Button>
             <Button x:Name="ButtonUsun" Canvas.Left="60" Canvas.Top="118" Width="120" Padding="5" Click="ButtonUsun_Click">Usuń z koszyka</Button>
-            <Button x:Name="ButtonIlosc" Canvas.Left="515" Canvas.Top="335" Width="120" Padding="5">Zmień ilość</Button>
-            <Button x:Name="ButtonZamow" Canvas.Left="60" Canvas.Top="180" Width="120" Padding="5">Wyślij zamówienie</Button>
-            <TextBox x:Name="TextBoxProdukt" Width="200" Canvas.Left="10" Canvas.Top="240"></TextBox>
+            <Button x:Name="ButtonZmienIlosc" Click="ButtonZmienIlosc_Click" Canvas.Left="492" Canvas.Top="374" Width="88" Padding="5" RenderTransformOrigin="0.551,2.125">Zmień ilość</Button>
+            <Button x:Name="ButtonZamow" Canvas.Left="628" Canvas.Top="186" Width="120" Padding="5">Wyślij zamówienie</Button>
+            <TextBox x:Name="TextBoxProdukt" Width="207" Canvas.Left="267" Canvas.Top="335" IsEnabled="False"></TextBox>
             <Button x:Name="ButtonDodajProdukt" Padding="5" Canvas.Left="60" Canvas.Top="278" Click="ButtonDodajProdukt_Click">Dodaj produkt</Button>
             <Button x:Name="ButtonWyswietlSzczegoly" Click="ButtonWyswietlSzczegoly_Click" Canvas.Left="60" Canvas.Top="320">Wyświetl szczegóły produktu</Button>
             <Button x:Name="ButtonWyswietListeProduktow" Click="ButtonWyswietlListeProduktow_Click" Canvas.Left="60" Canvas.Top="348">Wyświetl liste produktow</Button>
-            <TextBox x:Name="Ilosc" Width="137" RenderTransformOrigin="8.36,19" Canvas.Left="322" Canvas.Top="348" Height="15"></TextBox>
-            <Label Content="dgfd" Canvas.Left="252" Canvas.Top="118"/>
+            <TextBox x:Name="TextBoxIlosc" Width="40" RenderTransformOrigin="8.36,19" Canvas.Left="540" Canvas.Top="335" Height="18"></TextBox>
+
+            <Label Content="Wybierz produkt" Canvas.Left="10" Canvas.Top="10" Width="139"/>
+            <Label Content="Ilosc:" Canvas.Left="504" Canvas.Top="331"/>
+            <Label Content="Suma razem:" Canvas.Left="418" Canvas.Top="285" Width="92" RenderTransformOrigin="0.13,0.577"/>
+            <TextBlock Canvas.Left="531" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="290"/>
 
         </Canvas>
     </DockPanel>

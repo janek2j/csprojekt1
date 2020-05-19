@@ -32,12 +32,12 @@ namespace KoszykZakupowy
             InitializeComponent();
 
 
-            Produkt produkt1 = new Produkt("wkręt 5/35", 0.03m);
-            Produkt produkt2 = new Produkt("produkt2", 2m);
-            Produkt produkt3 = new Produkt("produkt3", 6m);
-            Produkt produkt4 = new Produkt("produkt4", 8m);
-            Produkt produkt5 = new Produkt("produkt5", 10.01m);
-            Produkt produkt6 = new Produkt("produkt6", 14.21m);
+            Produkt produkt1 = new Produkt("wkręt 5/35", 0.03);
+            Produkt produkt2 = new Produkt("produkt2", 2.99);
+            Produkt produkt3 = new Produkt("produkt3", 6.30);
+            Produkt produkt4 = new Produkt("produkt4", 8.0);
+            Produkt produkt5 = new Produkt("produkt5", 10.01);
+            Produkt produkt6 = new Produkt("produkt6", 14.21);
 
             produkty.Add(produkt1);
             produkty.Add(produkt2);
@@ -46,20 +46,15 @@ namespace KoszykZakupowy
             produkty.Add(produkt5);
             produkty.Add(produkt6);
 
-            ElementKoszyka elko1, elko2, elko3;
-            elko1.produkt = produkt1;
-            elko1.ilosc = 1;
-            elko2.produkt = produkt2;
-            elko2.ilosc = 12;
-            elko3.produkt = produkt3;
-            elko3.ilosc = 5;
-
+            ElementKoszyka elko1 = new ElementKoszyka(produkt1, 1);
+            ElementKoszyka elko2 = new ElementKoszyka(produkt2, 12);
+            ElementKoszyka elko3 = new ElementKoszyka(produkt3, 5);
 
             listaElementyKoszyka.Add(elko1);
             listaElementyKoszyka.Add(elko2);
             listaElementyKoszyka.Add(elko3);
 
-            ListBoxListaImion.ItemsSource = listaElementyKoszyka;
+            ListBoxListaElementow.ItemsSource = listaElementyKoszyka;
 
             //ComboBoxProdukty.ItemsSource = produkty;
 
@@ -91,6 +86,8 @@ namespace KoszykZakupowy
 
         }
 
+        
+
         private void ButtonDodajProdukt_Click(object sender, RoutedEventArgs e)
         {
             string str = TextBoxProdukt.Text;
@@ -120,10 +117,37 @@ namespace KoszykZakupowy
                 ListBoxKoszyk.Items.RemoveAt(k);
         }
 
+        private void ListBoxListaElementow_SelectionChanged(object sender, EventArgs e)
+        {
+            ElementKoszyka elko = (ElementKoszyka)ListBoxListaElementow.SelectedItem;
+            TextBoxProdukt.Text = elko.Produkt.Nazwa;
+            TextBoxIlosc.Text = Convert.ToString(elko.Ilosc);
+        }
+
         private void ListBoxListaImion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var str = ListBoxListaImion.SelectedItem.ToString();
+            var str = ListBoxListaElementow.SelectedItem.ToString();
             //MessageBox.Show(ListBoxListaImion.SelectedIndex.ToString() + " ---- " + str);
+
+        }
+
+        private void ButtonZmienIlosc_Click(object sender, RoutedEventArgs e)
+        {
+            int nowaIlosc;
+            ElementKoszyka elko = (ElementKoszyka)ListBoxListaElementow.SelectedItem;
+
+            int index = ListBoxListaElementow.SelectedIndex;
+
+            string nazwaProduktu = elko.Produkt.Nazwa;
+            double cenaProduktu = elko.Produkt.Cena;
+            int ilosc = elko.Ilosc;
+
+            nowaIlosc = Convert.ToInt32(TextBoxIlosc.Text);
+
+            listaElementyKoszyka.RemoveAt(index);
+            listaElementyKoszyka.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), ilosc));
+            //ListBoxListaElementow.Items.RemoveAt(index);
+            //ListBoxListaElementow.Items.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), ilosc));
 
         }
     }
