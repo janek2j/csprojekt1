@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ElementKoszyka.cs" />
+    <Compile Include="Pozycja.cs" />
     <Compile Include="ISuma.cs" />
     <Compile Include="Koszyk.cs" />
     <Compile Include="MyObject.cs" />
@@ -83,7 +83,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pozycja.cs" />
+    <Compile Include="Pozycja333.cs" />
     <Compile Include="Produkt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -3,21 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace KoszykZakupowy
 {
-    class Koszyk : ISuma
+    class Koszyk : ISuma, INotifyPropertyChanged
     {
-        private ElementKoszyka[] elementyKoszyka;
+        public List<Pozycja> Pozycje { get; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public Koszyk(ElementKoszyka[] elyko)
+        private int _licznik;
+
+        public int Licznik
         {
-            this.elementyKoszyka = elyko;
+            get { return _licznik; }
+            set { _licznik = value;
+                OnPropertyChanged("Licznik");
+            }
         }
+
+        private void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public Koszyk()
+        {
+            Pozycje = new List<Pozycja>();
+            Licznik = 0;
+        }
+
 
         public double SumaRazem()
         {
-            return 0.0;
+            double suma = 0;
+            if (Pozycje != null)
+            {
+                foreach (Pozycja pozycja in Pozycje)
+                {
+                    suma = suma + pozycja.Podsumuj();
+                }
+            }
+            return suma;
+        }
+
+        public void Add(Pozycja p)
+        {
+            Pozycje.Add(p);
+            Licznik += 1;
+            //OnPropertyChanged("Pozycje");
+            OnPropertyChanged("Licznik");
         }
     }
 }

@@ -14,60 +14,32 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace KoszykZakupowy
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        //ObservableCollection<Produkt> produkty = new ObservableCollection<Produkt>();
-        ObservableCollection<ElementKoszyka> listaElementyKoszyka = new ObservableCollection<ElementKoszyka>();
+        ObservableCollection<Pozycja> listaElementyKoszyka = new ObservableCollection<Pozycja>();
+        Koszyk koszyk = new Koszyk();
+        ObservableCollection<Koszyk> listaKoszyk = new ObservableCollection<Koszyk>();
 
         public MainWindow()
         {
-            ArrayList produkty = new ArrayList();
             InitializeComponent();
 
-            Produkt produkt1 = new Produkt("wkręt 5/35", 0.03);
-            Produkt produkt2 = new Produkt("produkt2", 2.99);
-            Produkt produkt3 = new Produkt("produkt3", 6.30);
-            Produkt produkt4 = new Produkt("produkt4", 8.0);
-            Produkt produkt5 = new Produkt("produkt5", 10.01);
-            Produkt produkt6 = new Produkt("produkt6", 14.21);
+            ArrayList produkty = new ArrayList();
+            produkty = ZainicjujListeProduktow();
 
-            produkty.Add(produkt1);
-            produkty.Add(produkt2);
-            produkty.Add(produkt3);
-            produkty.Add(produkt4);
-            produkty.Add(produkt5);
-            produkty.Add(produkt6);
 
-            ElementKoszyka elko1 = new ElementKoszyka(produkt1, 1);
-            ElementKoszyka elko2 = new ElementKoszyka(produkt2, 12);
-            ElementKoszyka elko3 = new ElementKoszyka(produkt3, 5);
+            Pozycja elko1 = new Pozycja((Produkt)produkty[0], 1);
+            Pozycja elko2 = new Pozycja((Produkt)produkty[1], 12);
+            Pozycja elko3 = new Pozycja((Produkt)produkty[2], 5);
 
-            listaElementyKoszyka.Add(elko1);
-            listaElementyKoszyka.Add(elko2);
-            listaElementyKoszyka.Add(elko3);
-
-            ListBoxListaElementow.ItemsSource = listaElementyKoszyka;
-
-            //ComboBoxProdukty.ItemsSource = produkty;
-
-            foreach (Produkt p in produkty)
-            {
-                if (p != null)
-                {
-                    ComboBoxProdukty.Items.Add(p);
-                }
-            }
-
-            //Simulation simulation = new Simulation();
-            //MyObject myObject = new MyObject(simulation);
-            //MySecondObject mySecondObject = new MySecondObject(simulation);
-            //simulation.simulate();
+            koszyk.Add(elko1);
+            koszyk.Add(elko2);
+            koszyk.Add(elko3);
+            ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
         }
 
         private void ButtonDodaj_Click(object sender, RoutedEventArgs e)
@@ -80,16 +52,36 @@ namespace KoszykZakupowy
             }
         }
 
-        private void ButtonDodajProdukt_Click(object sender, RoutedEventArgs e)
+        private void ButtonDodajDoKoszyka_Click(object sender, RoutedEventArgs e)
         {
-            string str = TextBoxProdukt.Text;
-            ComboBoxProdukty.Items.Add(str);
+            if (ComboBoxProdukty.SelectedItem != null)
+            {
+                //str = ComboBoxProdukty.SelectedItem.ToString();
+                //int index = ComboBoxProdukty.SelectedIndex;
+                Produkt produkt = (Produkt)ComboBoxProdukty.SelectedItem;
+                int ilosc = Convert.ToInt32(TextBoxLiczbaSztuk.Text);
+
+                Pozycja pozycja = new Pozycja(produkt, ilosc);
+                //ListBoxListaElementow.Items.Add(pozycja);
+                koszyk.Pozycje.Add(pozycja);
+            }
         }
 
-        private void ButtonWyswietlListeProduktow_Click(object sender, RoutedEventArgs e)
+        private void ButtonDodajDoKoszyka2_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ComboBoxProdukty.SelectedItem != null)
+            {
+                string str = ComboBoxProdukty.SelectedItem.ToString();
+                ListBoxKoszyk.Items.Add(str);
+            }
         }
+
+        //private void ButtonDodajProdukt_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string str = TextBoxProdukt.Text;
+        //    ComboBoxProdukty.Items.Add(str);
+        //}
+
 
         private void ButtonWyswietlSzczegoly_Click(object sender, RoutedEventArgs e)
         {
@@ -101,7 +93,17 @@ namespace KoszykZakupowy
             MessageBox.Show(li.ToString() + ", indeks: " + k);
         }
 
-        private void ButtonUsun_Click(object sender, RoutedEventArgs e)
+        private void ButtonUsunZKoszyka_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ListBoxListaElementow.SelectedIndex;
+            if (index != -1)
+            {
+                //ListBoxKoszyk.Items.RemoveAt(index);
+
+            }
+        }
+
+        private void ButtonUsunZKoszyka2_Click(object sender, RoutedEventArgs e)
         {
             int k = ListBoxKoszyk.SelectedIndex;
             if (k != -1)
@@ -110,7 +112,7 @@ namespace KoszykZakupowy
 
         private void ListBoxListaElementow_SelectionChanged(object sender, EventArgs e)
         {
-            ElementKoszyka elko = (ElementKoszyka)ListBoxListaElementow.SelectedItem;
+            Pozycja elko = (Pozycja)ListBoxListaElementow.SelectedItem;
             try
             {
                 TextBoxProdukt.Text = elko.Produkt.Nazwa;
@@ -132,7 +134,7 @@ namespace KoszykZakupowy
         private void ButtonZmienIlosc_Click(object sender, RoutedEventArgs e)
         {
             int nowaIlosc;
-            ElementKoszyka elko = (ElementKoszyka)ListBoxListaElementow.SelectedItem;
+            Pozycja elko = (Pozycja)ListBoxListaElementow.SelectedItem;
 
             int index = ListBoxListaElementow.SelectedIndex;
 
@@ -144,11 +146,50 @@ namespace KoszykZakupowy
 
                 nowaIlosc = Convert.ToInt32(TextBoxIlosc.Text);
 
-                listaElementyKoszyka.RemoveAt(index);
-                listaElementyKoszyka.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), nowaIlosc));
-                //ListBoxListaElementow.Items.RemoveAt(index);
-                //ListBoxListaElementow.Items.Insert(index, new ElementKoszyka(new Produkt(nazwaProduktu, cenaProduktu), ilosc));
+                koszyk.Pozycje.RemoveAt(index);
+                koszyk.Pozycje.Insert(index, new Pozycja(new Produkt(nazwaProduktu, cenaProduktu), nowaIlosc));
+
+                MessageBox.Show("Index= " + index);
             }
+        }
+
+        private ArrayList ZainicjujListeProduktow()
+        {
+            ArrayList produkty = new ArrayList();
+            Produkt produkt1 = new Produkt("produkt1", 0.23);
+            Produkt produkt2 = new Produkt("produkt2", 2.99);
+            Produkt produkt3 = new Produkt("produkt3", 6.30);
+            Produkt produkt4 = new Produkt("produkt4", 1.76);
+
+            produkty.Add(produkt1);
+            produkty.Add(produkt2);
+            produkty.Add(produkt3);
+            produkty.Add(produkt4);
+
+            foreach (Produkt p in produkty)
+            {
+                if (p != null)
+                {
+                    ComboBoxProdukty.Items.Add(p);
+                }
+            }
+
+            return produkty;
+        }
+
+        private void ComboBoxProdukty_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TextBoxLiczbaSztuk.Text = "1";
+            Produkt produkt = (Produkt)ComboBoxProdukty.SelectedItem;
+            TextBoxCenaJednostkowa.Text = Convert.ToString(produkt.Cena);
+        }
+
+        private void ButtonTest_Click(object sender, RoutedEventArgs e)
+        {
+            string str;
+            double sumaRazem = koszyk.SumaRazem();
+            int len = koszyk.Pozycje.Count;
+            MessageBox.Show(Convert.ToString(len));
         }
     }
 }

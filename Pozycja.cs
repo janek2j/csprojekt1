@@ -8,17 +8,39 @@ namespace KoszykZakupowy
 {
     class Pozycja
     {
-        private Produkt produkt;
-        private int ilosc;
+        public Produkt Produkt { get; set; }
+        public int Ilosc { get; set; }
+        private double _podsuma;
+
+        public double Podsuma {
+            get
+            {
+                return _podsuma;
+            }
+            set
+            {
+                _podsuma = Podsumuj();
+            }
+        }
+
+        public string PodsumaTekst
+        {
+            get
+            {
+                return String.Format("{0:0.00}", Podsuma);
+            }
+        }
 
         public Pozycja(Produkt produkt, int ilosc)
         {
-            this.produkt = produkt;
-            this.ilosc = ilosc;
+            Produkt = produkt;
+            Ilosc = ilosc;
+            _podsuma = Podsumuj();
         }
 
-        public Produkt Produkt { get; set; }
-        public int Ilosc { get; set; }
-
+        public double Podsumuj()
+        {
+            return this.Produkt.Cena * this.Ilosc;
+        }
     }
 }
