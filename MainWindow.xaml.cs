@@ -27,10 +27,8 @@ namespace KoszykZakupowy
 
         public MainWindow()
         {
-
             ArrayList produkty = new ArrayList();
             InitializeComponent();
-
 
             Produkt produkt1 = new Produkt("wkręt 5/35", 0.03);
             Produkt produkt2 = new Produkt("produkt2", 2.99);
@@ -69,9 +67,7 @@ namespace KoszykZakupowy
             //Simulation simulation = new Simulation();
             //MyObject myObject = new MyObject(simulation);
             //MySecondObject mySecondObject = new MySecondObject(simulation);
-
             //simulation.simulate();
-
         }
 
         private void ButtonDodaj_Click(object sender, RoutedEventArgs e)
@@ -81,12 +77,8 @@ namespace KoszykZakupowy
             {
                 str = ComboBoxProdukty.SelectedItem.ToString();
                 ListBoxKoszyk.Items.Add(str);
-
             }
-
         }
-
-
 
         private void ButtonDodajProdukt_Click(object sender, RoutedEventArgs e)
         {
@@ -107,7 +99,6 @@ namespace KoszykZakupowy
             int k = ListBoxKoszyk.SelectedIndex;
 
             MessageBox.Show(li.ToString() + ", indeks: " + k);
-
         }
 
         private void ButtonUsun_Click(object sender, RoutedEventArgs e)
@@ -120,24 +111,22 @@ namespace KoszykZakupowy
         private void ListBoxListaElementow_SelectionChanged(object sender, EventArgs e)
         {
             ElementKoszyka elko = (ElementKoszyka)ListBoxListaElementow.SelectedItem;
-
             try
             {
                 TextBoxProdukt.Text = elko.Produkt.Nazwa;
                 TextBoxIlosc.Text = Convert.ToString(elko.Ilosc);
+                //TextBoxIlosc.Text = String.Format("{0:0.00}", elko.Ilosc); //string.Format("{0:0.000}", number)
             }
             catch
             {
 
             }
-
         }
 
         private void ListBoxListaImion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var str = ListBoxListaElementow.SelectedItem.ToString();
             //MessageBox.Show(ListBoxListaImion.SelectedIndex.ToString() + " ---- " + str);
-
         }
 
         private void ButtonZmienIlosc_Click(object sender, RoutedEventArgs e)

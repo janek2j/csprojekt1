@@ -33,7 +33,7 @@
                         <GridView.Columns>
                             <GridViewColumn Header="Produkt" DisplayMemberBinding="{Binding Path=Produkt.Nazwa}" Width="200"/>
                             <GridViewColumn Header="Ilosc" DisplayMemberBinding="{Binding Path=Ilosc}" Width="50"/>
-                            <GridViewColumn Header="Podsuma" DisplayMemberBinding="{Binding Path=Podsuma}" Width="70"/>
+                            <GridViewColumn Header="Podsuma" DisplayMemberBinding="{Binding Path=PodsumaTekst}" Width="70"/>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>

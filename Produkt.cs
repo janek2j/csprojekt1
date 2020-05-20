@@ -10,7 +10,6 @@ namespace KoszykZakupowy
     {
         //private int numerId;
         private double _cena;
-        private string opis; //??????
 
         public Produkt(string nazwa, double cena)
         {

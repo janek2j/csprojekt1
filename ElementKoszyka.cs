@@ -23,6 +23,14 @@ namespace KoszykZakupowy
             }
         }
 
+        public string PodsumaTekst
+        {
+            get
+            {
+                return String.Format("{0:0.00}", Podsuma);
+            }
+        }
+
         public ElementKoszyka(Produkt produkt, int ilosc)
         {
             Produkt = produkt;
