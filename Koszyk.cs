@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace KoszykZakupowy
 {
     class Koszyk : ISuma, INotifyPropertyChanged
     {
-        public List<Pozycja> Pozycje { get; }
+        //public List<Pozycja> Pozycje { get; }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        ObservableCollection<Pozycja> listaKoszyk = new ObservableCollection<Pozycja>();
 
         private int _licznik;
 
