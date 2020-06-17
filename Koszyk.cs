@@ -10,7 +10,7 @@ namespace KoszykZakupowy
 {
     class Koszyk : ISuma, INotifyPropertyChanged
     {
-        //public List<Pozycja> Pozycje { get; }
+        public List<Pozycja> Pozycje { get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         ObservableCollection<Pozycja> listaKoszyk = new ObservableCollection<Pozycja>();

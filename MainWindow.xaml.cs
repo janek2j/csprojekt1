@@ -98,7 +98,7 @@ namespace KoszykZakupowy
             int index = ListBoxListaElementow.SelectedIndex;
             if (index != -1)
             {
-                //ListBoxKoszyk.Items.RemoveAt(index);
+                ListBoxKoszyk.Items.RemoveAt(index);
 
             }
         }
@@ -186,10 +186,20 @@ namespace KoszykZakupowy
 
         private void ButtonTest_Click(object sender, RoutedEventArgs e)
         {
-            string str;
+            string str = "";
             double sumaRazem = koszyk.SumaRazem();
             int len = koszyk.Pozycje.Count;
-            MessageBox.Show(Convert.ToString(len));
+
+            foreach (Pozycja pozycja in koszyk.Pozycje)
+            {
+                str = str + "\n" + pozycja.Produkt.Nazwa + "  " + pozycja.Produkt.Cena + "  " + pozycja.Ilosc + "  " + pozycja.Podsuma;
+            }
+            MessageBox.Show("Liczba pozycji: " + Convert.ToString(len) + str);
+        }
+
+        private void ListBoxListaElementow_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //MessageBox.Show("wybór");
         }
     }
 }
