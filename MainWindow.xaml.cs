@@ -61,9 +61,27 @@ namespace KoszykZakupowy
                 Produkt produkt = (Produkt)ComboBoxProdukty.SelectedItem;
                 int ilosc = Convert.ToInt32(TextBoxLiczbaSztuk.Text);
 
-                Pozycja pozycja = new Pozycja(produkt, ilosc);
-                //ListBoxListaElementow.Items.Add(pozycja);
-                koszyk.Pozycje.Add(pozycja);
+                //int tempIlosc = ilosc;
+                bool duplikat = false; //czy w koszyku jest juz ten produkt (produkt o tej samej nazwie)
+                foreach (Pozycja poz in koszyk.Pozycje)
+                {
+                    if (poz.Produkt.Nazwa == produkt.Nazwa)
+                    {
+                        poz.Ilosc = ilosc + poz.Ilosc;
+                        duplikat = true;
+                        break;
+                    }
+                }
+
+                if (duplikat == false) {
+                    Pozycja pozycja = new Pozycja(produkt, ilosc);
+                    //ListBoxListaElementow.Items.Add(pozycja);
+                    koszyk.Pozycje.Add(pozycja);
+                }
+
+
+                ListBoxListaElementow.ItemsSource = null;
+                ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
             }
         }
 
@@ -96,11 +114,34 @@ namespace KoszykZakupowy
         private void ButtonUsunZKoszyka_Click(object sender, RoutedEventArgs e)
         {
             int index = ListBoxListaElementow.SelectedIndex;
+            object selectedItem = ListBoxListaElementow.SelectedItem;
+            string str ="";
+            Pozycja pozycja;
+
             if (index != -1)
-            {
-                ListBoxKoszyk.Items.RemoveAt(index);
+               
+            {                
+
+                pozycja = (Pozycja)selectedItem;
+
+                int ind;
+                foreach (Pozycja poz in koszyk.Pozycje)
+                {
+                    
+                    if (pozycja.Produkt.Nazwa == poz.Produkt.Nazwa)
+                    {
+                        ind = koszyk.Pozycje.IndexOf(pozycja);
+                        //koszyk.Pozycje.RemoveAt(ind);
+                        koszyk.Pozycje.Remove(poz);
+                        MessageBox.Show(ind + " ; " + poz.Produkt.Nazwa);
+                        break;
+                    }
+                }
+                ListBoxListaElementow.ItemsSource = null;
+                ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
 
             }
+            
         }
 
         private void ButtonUsunZKoszyka2_Click(object sender, RoutedEventArgs e)
