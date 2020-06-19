@@ -7,18 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="480" Width="800">
     <DockPanel>
-        <!--<Menu DockPanel.Dock="Top" Height="30" Margin="0,0,0,0" VerticalAlignment="Top" Background="#FFB6ABAB">
-            <Button>Podsumowanie koszyka</Button>
-            <Button>Wyślij zamówienie</Button>
-            <Button>Podsumowanie zamównienia</Button>
-        </Menu>
-        <Button DockPanel.Dock="Bottom">Bottom</Button>
-        <Button DockPanel.Dock="Left" Width="100">Left</Button>-->
         <Canvas>
             <ComboBox x:Name="ComboBoxProdukty" Width="170" Canvas.Left="10" Canvas.Top="41" Height="30" SelectionChanged="ComboBoxProdukty_SelectionChanged">
 
             </ComboBox>
-            <ListView x:Name="ListBoxListaElementow" Height="239" Width="341" Canvas.Left="285" Canvas.Top="41" SelectionMode="Extended" SelectionChanged="ListBoxListaElementow_SelectionChanged">
+            <ListView x:Name="ListBoxListaElementow" Height="300" Width="305" Canvas.Left="285" Canvas.Top="41" SelectionMode="Extended" SelectionChanged="ListBoxListaElementow_SelectionChanged">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
                         <GridView.ColumnHeaderContainerStyle>
@@ -31,10 +24,9 @@
                             </Style>
                         </GridView.ColumnHeaderContainerStyle>
                         <GridView.Columns>
-                            <GridViewColumn Header="Produkt" DisplayMemberBinding="{Binding Path=Produkt.Nazwa}" Width="150"/>
+                            <GridViewColumn Header="Produkt" DisplayMemberBinding="{Binding Path=Produkt.Nazwa}" Width="180"/>
                             <GridViewColumn Header="Cena/szt." DisplayMemberBinding="{Binding Path=Produkt.Cena}" Width="60"/>
                             <GridViewColumn Header="Ilosc" DisplayMemberBinding="{Binding Path=Ilosc}" Width="50"/>
-                            <GridViewColumn Header="Podsuma" DisplayMemberBinding="{Binding Path=PodsumaTekst}" Width="70"/>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
@@ -51,17 +43,16 @@
             </ListView>
             <Button x:Name="ButtonDodajDoKoszyka" Canvas.Left="130" Canvas.Top="139" Width="120" Padding="5" Click="ButtonDodajDoKoszyka_Click" RenderTransformOrigin="0.492,1.714">Dodaj do koszyka</Button>
             <Button x:Name="ButtonUsunZKoszyka" Canvas.Left="130" Canvas.Top="200" Width="120" Padding="5" Click="ButtonUsunZKoszyka_Click" RenderTransformOrigin="0.567,3.286">Usuń z koszyka</Button>
-            <Button x:Name="ButtonZamow" Canvas.Left="644" Canvas.Top="139" Width="120" Padding="5" Click="WyslijZamowienie_Click">Wyślij zamówienie</Button>
+            <Button x:Name="ButtonZamow" Canvas.Left="625" Canvas.Top="139" Width="120" Padding="5" Click="WyslijZamowienie_Click">Wyślij zamówienie</Button>
 
             <Label Content="Wybierz produkt do koszyka" Canvas.Left="10" Canvas.Top="10" Width="170"/>
             <Label Content="" Canvas.Left="506" Canvas.Top="327" RenderTransformOrigin="0.861,0.462"/>
-            <Label Content="Suma razem:" Canvas.Left="463" Canvas.Top="285" Width="92" RenderTransformOrigin="0.13,0.577"/>
-            <TextBlock x:Name="TextBlockSumaRazem" IsEnabled="False" Canvas.Left="571" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="290" FontWeight="Bold"/>
+            <Label Content="Suma razem [zł]:" Canvas.Left="418" Canvas.Top="367" Width="107" RenderTransformOrigin="0.13,0.577"/>
+            <TextBlock x:Name="TextBlockSumaRazem" IsEnabled="False" Canvas.Left="535" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="372" FontWeight="Bold"/>
             <TextBox x:Name="TextBoxCenaJednostkowa" Height="23" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="104" Width="62" RenderTransformOrigin="-0.843,2.717" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="TextBoxLiczbaSztuk" Height="30" Canvas.Left="200" TextWrapping="Wrap" Canvas.Top="41" Width="50" RenderTransformOrigin="0.486,1" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="Cena jednostkowa [zł]" Canvas.Left="10" Canvas.Top="78" RenderTransformOrigin="-0.776,-5.423"/>
             <Label Content="Podaj ilosc" Canvas.Left="200" Canvas.Top="10" RenderTransformOrigin="0.697,-9.423"/>
-            <Button Content="Test" Click="ButtonTest_Click" Canvas.Left="689" Canvas.Top="399" Width="75" Background="#FFA62C2C" RenderTransformOrigin="0.733,1.5"/>
             <Label Content="Zawartość koszyka" Canvas.Left="285" Canvas.Top="10"/>
 
         </Canvas>

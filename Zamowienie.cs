@@ -24,7 +24,7 @@ namespace KoszykZakupowy
 
         public double SumaRazem()
         {
-            return 0.0;
+            return koszyk.SumaRazem();
         }
     }
 }

@@ -58,12 +58,6 @@
     <Compile Include="Pozycja.cs" />
     <Compile Include="ISuma.cs" />
     <Compile Include="Koszyk.cs" />
-    <Compile Include="MyObject.cs" />
-    <Compile Include="MySecondObject.cs" />
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Simulation.cs" />
     <Compile Include="Zamowienie.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -77,13 +71,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Page1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pozycja333.cs" />
     <Compile Include="Produkt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
