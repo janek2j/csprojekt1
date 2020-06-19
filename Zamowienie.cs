@@ -16,7 +16,11 @@ namespace KoszykZakupowy
             this.koszyk = koszyk;
         }
 
-        public Koszyk Koszyk { get; }
+        public Koszyk Koszyk {
+            get {
+                return koszyk;
+            }
+        }
 
         public double SumaRazem()
         {

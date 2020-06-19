@@ -18,7 +18,7 @@
             <ComboBox x:Name="ComboBoxProdukty" Width="170" Canvas.Left="10" Canvas.Top="41" Height="30" SelectionChanged="ComboBoxProdukty_SelectionChanged">
 
             </ComboBox>
-            <ListView x:Name="ListBoxListaElementow" Height="141" Width="341" Canvas.Left="285" Canvas.Top="123" SelectionMode="Extended" SelectionChanged="ListBoxListaElementow_SelectionChanged">
+            <ListView x:Name="ListBoxListaElementow" Height="239" Width="341" Canvas.Left="285" Canvas.Top="41" SelectionMode="Extended" SelectionChanged="ListBoxListaElementow_SelectionChanged">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
                         <GridView.ColumnHeaderContainerStyle>
@@ -49,37 +49,20 @@
                 </ListBox.ItemTemplate>
                 <!--<ListBoxItem>Imie1</ListBoxItem>-->
             </ListView>
-            <ListBox x:Name="ListBoxKoszyk" Height="82" Width="341" Canvas.Left="285" Canvas.Top="22" RenderTransformOrigin="0.907,0.327">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListBoxItem}">
-                        <Setter Property="Padding" Value="2" />
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="FontSize" Value="15" />
-                                <Setter Property="FontWeight" Value="Bold" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-            </ListBox>
-            <Button x:Name="ButtonDodajDoKoszyka2" Canvas.Left="644" Canvas.Top="22" Width="120" Padding="5" Click="ButtonDodajDoKoszyka2_Click" RenderTransformOrigin="0.492,1.714" Height="29">Dodaj do koszyka</Button>
-            <Button x:Name="ButtonDodajDoKoszyka" Canvas.Left="60" Canvas.Top="148" Width="120" Padding="5" Click="ButtonDodajDoKoszyka_Click" RenderTransformOrigin="0.492,1.714">Dodaj do koszyka</Button>
-            <Button x:Name="ButtonUsunZKoszyka" Canvas.Left="60" Canvas.Top="202" Width="120" Padding="5" Click="ButtonUsunZKoszyka_Click" RenderTransformOrigin="0.567,3.286">Usuń z koszyka</Button>
-            <Button x:Name="ButtonUsunZKoszyka2" Canvas.Left="644" Canvas.Top="59" Width="120" Padding="5" Click="ButtonUsunZKoszyka2_Click" RenderTransformOrigin="0.567,3.286">Usuń z koszyka</Button>
-            <Button x:Name="ButtonZmienIlosc" Click="ButtonZmienIlosc_Click" Canvas.Left="492" Canvas.Top="374" Width="88" Padding="5" RenderTransformOrigin="0.551,2.125">Zmień ilość</Button>
-            <Button x:Name="ButtonZamow" Canvas.Left="644" Canvas.Top="176" Width="120" Padding="5">Wyślij zamówienie</Button>
-            <TextBox x:Name="TextBoxProdukt" Width="207" Canvas.Left="267" Canvas.Top="335" IsEnabled="False" Text="{Binding ElementName=ListBoxListaElementow, Path=SelectedItem.Element1}"></TextBox>
-            <TextBox x:Name="TextBoxIlosc" Width="40" RenderTransformOrigin="8.36,19" Canvas.Left="540" Canvas.Top="335" Height="18"></TextBox>
+            <Button x:Name="ButtonDodajDoKoszyka" Canvas.Left="130" Canvas.Top="139" Width="120" Padding="5" Click="ButtonDodajDoKoszyka_Click" RenderTransformOrigin="0.492,1.714">Dodaj do koszyka</Button>
+            <Button x:Name="ButtonUsunZKoszyka" Canvas.Left="130" Canvas.Top="200" Width="120" Padding="5" Click="ButtonUsunZKoszyka_Click" RenderTransformOrigin="0.567,3.286">Usuń z koszyka</Button>
+            <Button x:Name="ButtonZamow" Canvas.Left="644" Canvas.Top="139" Width="120" Padding="5" Click="WyslijZamowienie_Click">Wyślij zamówienie</Button>
 
             <Label Content="Wybierz produkt do koszyka" Canvas.Left="10" Canvas.Top="10" Width="170"/>
-            <Label Content="Ilosc:" Canvas.Left="504" Canvas.Top="331"/>
-            <Label Content="Suma razem:" Canvas.Left="418" Canvas.Top="285" Width="92" RenderTransformOrigin="0.13,0.577"/>
-            <TextBlock x:Name="TextBlockSumaRazem" IsEnabled="False" Canvas.Left="531" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="290" FontWeight="Bold"/>
+            <Label Content="" Canvas.Left="506" Canvas.Top="327" RenderTransformOrigin="0.861,0.462"/>
+            <Label Content="Suma razem:" Canvas.Left="463" Canvas.Top="285" Width="92" RenderTransformOrigin="0.13,0.577"/>
+            <TextBlock x:Name="TextBlockSumaRazem" IsEnabled="False" Canvas.Left="571" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="290" FontWeight="Bold"/>
             <TextBox x:Name="TextBoxCenaJednostkowa" Height="23" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="104" Width="62" RenderTransformOrigin="-0.843,2.717" IsEnabled="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox x:Name="TextBoxLiczbaSztuk" Height="30" Canvas.Left="200" TextWrapping="Wrap" Canvas.Top="41" Width="50" RenderTransformOrigin="0.486,1" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="Cena jednostkowa [zł]" Canvas.Left="10" Canvas.Top="78" RenderTransformOrigin="-0.776,-5.423"/>
             <Label Content="Podaj ilosc" Canvas.Left="200" Canvas.Top="10" RenderTransformOrigin="0.697,-9.423"/>
-            <Button Content="Test" Click="ButtonTest_Click" Canvas.Left="81" Canvas.Top="264" Width="75" Background="#FFA62C2C"/>
+            <Button Content="Test" Click="ButtonTest_Click" Canvas.Left="689" Canvas.Top="399" Width="75" Background="#FFA62C2C" RenderTransformOrigin="0.733,1.5"/>
+            <Label Content="Zawartość koszyka" Canvas.Left="285" Canvas.Top="10"/>
 
         </Canvas>
     </DockPanel>

@@ -31,7 +31,7 @@ namespace KoszykZakupowy
         }
         public override string ToString()
         {
-            return Nazwa + ", " + Cena;
+            return Nazwa;
         }
 
     }

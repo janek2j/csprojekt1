@@ -42,15 +42,7 @@ namespace KoszykZakupowy
             ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
         }
 
-        private void ButtonDodaj_Click(object sender, RoutedEventArgs e)
-        {
-            string str;
-            if (ComboBoxProdukty.SelectedItem != null)
-            {
-                str = ComboBoxProdukty.SelectedItem.ToString();
-                ListBoxKoszyk.Items.Add(str);
-            }
-        }
+      
 
         private void ButtonDodajDoKoszyka_Click(object sender, RoutedEventArgs e)
         {
@@ -63,6 +55,7 @@ namespace KoszykZakupowy
 
                 //int tempIlosc = ilosc;
                 bool duplikat = false; //czy w koszyku jest juz ten produkt (produkt o tej samej nazwie)
+                
                 foreach (Pozycja poz in koszyk.Pozycje)
                 {
                     if (poz.Produkt.Nazwa == produkt.Nazwa)
@@ -77,45 +70,23 @@ namespace KoszykZakupowy
                     Pozycja pozycja = new Pozycja(produkt, ilosc);
                     //ListBoxListaElementow.Items.Add(pozycja);
                     koszyk.Pozycje.Add(pozycja);
-                }
+                } 
 
-
-                ListBoxListaElementow.ItemsSource = null;
-                ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
             }
+
+            ListBoxListaElementow.ItemsSource = null;
+            ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
+            //TextBlockSumaRazem.IsEnabled = true;
+            TextBlockSumaRazem.Text = Convert.ToString(koszyk.SumaRazem());
         }
 
-        private void ButtonDodajDoKoszyka2_Click(object sender, RoutedEventArgs e)
-        {
-            if (ComboBoxProdukty.SelectedItem != null)
-            {
-                string str = ComboBoxProdukty.SelectedItem.ToString();
-                ListBoxKoszyk.Items.Add(str);
-            }
-        }
-
-        //private void ButtonDodajProdukt_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string str = TextBoxProdukt.Text;
-        //    ComboBoxProdukty.Items.Add(str);
-        //}
-
-
-        private void ButtonWyswietlSzczegoly_Click(object sender, RoutedEventArgs e)
-        {
-            //object li = ListBoxKoszyk.SelectedItem.ToString();  //.Items.CurrentItem;
-            object li = ListBoxKoszyk.SelectedItem.ToString();   //.Items.CurrentItem;
-
-            int k = ListBoxKoszyk.SelectedIndex;
-
-            MessageBox.Show(li.ToString() + ", indeks: " + k);
-        }
+        
 
         private void ButtonUsunZKoszyka_Click(object sender, RoutedEventArgs e)
         {
             int index = ListBoxListaElementow.SelectedIndex;
             object selectedItem = ListBoxListaElementow.SelectedItem;
-            string str ="";
+            
             Pozycja pozycja;
 
             if (index != -1)
@@ -139,31 +110,14 @@ namespace KoszykZakupowy
                 }
                 ListBoxListaElementow.ItemsSource = null;
                 ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
-
+                TextBlockSumaRazem.Text = Convert.ToString(koszyk.SumaRazem());
             }
             
         }
 
-        private void ButtonUsunZKoszyka2_Click(object sender, RoutedEventArgs e)
+       private void ListBoxListaElementow_SelectionChanged(object sender, EventArgs e)
         {
-            int k = ListBoxKoszyk.SelectedIndex;
-            if (k != -1)
-                ListBoxKoszyk.Items.RemoveAt(k);
-        }
-
-        private void ListBoxListaElementow_SelectionChanged(object sender, EventArgs e)
-        {
-            Pozycja elko = (Pozycja)ListBoxListaElementow.SelectedItem;
-            try
-            {
-                TextBoxProdukt.Text = elko.Produkt.Nazwa;
-                TextBoxIlosc.Text = Convert.ToString(elko.Ilosc);
-                //TextBoxIlosc.Text = String.Format("{0:0.00}", elko.Ilosc); //string.Format("{0:0.000}", number)
-            }
-            catch
-            {
-
-            }
+            
         }
 
         private void ListBoxListaImion_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -172,27 +126,6 @@ namespace KoszykZakupowy
             //MessageBox.Show(ListBoxListaImion.SelectedIndex.ToString() + " ---- " + str);
         }
 
-        private void ButtonZmienIlosc_Click(object sender, RoutedEventArgs e)
-        {
-            int nowaIlosc;
-            Pozycja elko = (Pozycja)ListBoxListaElementow.SelectedItem;
-
-            int index = ListBoxListaElementow.SelectedIndex;
-
-            if (index != -1)
-            {
-                string nazwaProduktu = elko.Produkt.Nazwa;
-                double cenaProduktu = elko.Produkt.Cena;
-                int ilosc = elko.Ilosc;
-
-                nowaIlosc = Convert.ToInt32(TextBoxIlosc.Text);
-
-                koszyk.Pozycje.RemoveAt(index);
-                koszyk.Pozycje.Insert(index, new Pozycja(new Produkt(nazwaProduktu, cenaProduktu), nowaIlosc));
-
-                MessageBox.Show("Index= " + index);
-            }
-        }
 
         private ArrayList ZainicjujListeProduktow()
         {
@@ -241,6 +174,33 @@ namespace KoszykZakupowy
         private void ListBoxListaElementow_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //MessageBox.Show("wybór");
+        }
+
+        private void WyslijZamowienie_Click(object sender, RoutedEventArgs e)
+        {
+            Zamowienie zamowienie = new Zamowienie(koszyk);
+
+            string str = "Twoje zamówienie: \n";
+
+            if (zamowienie.Koszyk.Pozycje == null)
+            {
+                MessageBox.Show("Koszyk jest pusty!");
+            }
+            else
+            {
+                foreach (Pozycja poz in zamowienie.Koszyk.Pozycje)
+                {
+                    if (poz != null)
+                    {
+                        str = str + "\nProdukt: " + poz.Produkt.Nazwa + ",  Cena/szt.: " + poz.Produkt.Cena + ", Ilosc: " + poz.Ilosc;
+                    }
+
+                    str = str + "\n\nZamówienie zostało wysłane."
+                }
+
+                MessageBox.Show(str);
+            }
+            
         }
     }
 }
