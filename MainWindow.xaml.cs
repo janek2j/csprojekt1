@@ -184,9 +184,9 @@ namespace KoszykZakupowy
                     }
                 }
                 str = str + "\n\nSuma razem: " + string.Format( "{0:0.00}", zamowienie.SumaRazem() ) + " zł";
-                //str = str + "\n\nSuma razem: " + Convert.ToString(zamowienie.SumaRazem() + " zł");
 
-                str = str + "\n\nCzy chcesz potwierdzić zamówienie ?";
+                
+                str = zamowienie.Opis() + "\n\nCzy chcesz potwierdzić zamówienie ?";
                 MessageBox.Show(str,"Podsumowanie zamówienia", MessageBoxButton.YesNo, MessageBoxImage.Information);
             }
         }
