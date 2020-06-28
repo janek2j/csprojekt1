@@ -31,11 +31,11 @@ namespace KoszykZakupowy
             ArrayList produkty = new ArrayList();
             produkty = ZainicjujListeProduktow();
 
-            Pozycja elko1 = new Pozycja((Produkt)produkty[0], 1);
-            Pozycja elko2 = new Pozycja((Produkt)produkty[1], 12);
-            Pozycja elko3 = new Pozycja((Produkt)produkty[2], 5);
+            //Pozycja elko1 = new Pozycja((Produkt)produkty[0], 1);
+            //Pozycja elko2 = new Pozycja((Produkt)produkty[1], 12);
+            //Pozycja elko3 = new Pozycja((Produkt)produkty[2], 5);
 
-            TextBlockSumaRazem.Text = Convert.ToString(koszyk.SumaRazem());
+            TextBlockSumaRazem.Text = string.Format("{0:0.00}", koszyk.SumaRazem() );
 
             //// Testowa ladowanie koszyka na starcie programu
             //koszyk.Add(elko1);
@@ -75,7 +75,7 @@ namespace KoszykZakupowy
             ListBoxListaElementow.ItemsSource = null;
             ListBoxListaElementow.ItemsSource = koszyk.Pozycje;
             //TextBlockSumaRazem.IsEnabled = true;
-            TextBlockSumaRazem.Text = Convert.ToString(koszyk.SumaRazem());
+            TextBlockSumaRazem.Text = string.Format("{0:0.00}", koszyk.SumaRazem() );   
         }
 
 
@@ -183,9 +183,11 @@ namespace KoszykZakupowy
                         str = str + "\nProdukt: " + poz.Produkt.Nazwa + ",  Cena/szt.: " + poz.Produkt.Cena + ", Ilosc: " + poz.Ilosc;
                     }
                 }
-                str = str + "\n\nSuma razem [zł]: " + Convert.ToString(zamowienie.SumaRazem());
-                str = str + "\n\nZamówienie zostało wysłane.";
-                MessageBox.Show(str,"Podsumowanie zamówienia", MessageBoxButton.OK, MessageBoxImage.Information);
+                str = str + "\n\nSuma razem: " + string.Format( "{0:0.00}", zamowienie.SumaRazem() ) + " zł";
+                //str = str + "\n\nSuma razem: " + Convert.ToString(zamowienie.SumaRazem() + " zł");
+
+                str = str + "\n\nCzy chcesz potwierdzić zamówienie ?";
+                MessageBox.Show(str,"Podsumowanie zamówienia", MessageBoxButton.YesNo, MessageBoxImage.Information);
             }
         }
     }

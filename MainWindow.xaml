@@ -43,7 +43,7 @@
             </ListView>
             <Button x:Name="ButtonDodajDoKoszyka" Canvas.Left="130" Canvas.Top="139" Width="120" Padding="5" Click="ButtonDodajDoKoszyka_Click" RenderTransformOrigin="0.492,1.714">Dodaj do koszyka</Button>
             <Button x:Name="ButtonUsunZKoszyka" Canvas.Left="130" Canvas.Top="200" Width="120" Padding="5" Click="ButtonUsunZKoszyka_Click" RenderTransformOrigin="0.567,3.286">Usuń z koszyka</Button>
-            <Button x:Name="ButtonZamow" Canvas.Left="625" Canvas.Top="139" Width="120" Padding="5" Click="WyslijZamowienie_Click">Wyślij zamówienie</Button>
+            <Button x:Name="ButtonZamow" Canvas.Left="625" Canvas.Top="139" Width="120" Padding="5" Click="WyslijZamowienie_Click">Utwórz zamówienie</Button>
 
             <Label Content="Wybierz produkt do koszyka" Canvas.Left="10" Canvas.Top="10" Width="170"/>
             <Label Content="" Canvas.Left="506" Canvas.Top="327" RenderTransformOrigin="0.861,0.462"/>
