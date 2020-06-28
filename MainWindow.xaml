@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KoszykZakupowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="800">
+        Title="Sklepik - Dokonywanie zakupu" Height="480" Width="800">
     <DockPanel>
-        <Canvas>
+        <Canvas Background="#FFD2D2D2">
             <ComboBox x:Name="ComboBoxProdukty" Width="170" Canvas.Left="10" Canvas.Top="41" Height="30" SelectionChanged="ComboBoxProdukty_SelectionChanged">
 
             </ComboBox>

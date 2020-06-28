@@ -185,7 +185,7 @@ namespace KoszykZakupowy
                 }
                 str = str + "\n\nSuma razem [zł]: " + Convert.ToString(zamowienie.SumaRazem());
                 str = str + "\n\nZamówienie zostało wysłane.";
-                MessageBox.Show(str);
+                MessageBox.Show(str,"Podsumowanie zamówienia", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
