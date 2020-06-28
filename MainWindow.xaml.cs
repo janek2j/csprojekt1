@@ -126,10 +126,10 @@ namespace KoszykZakupowy
         private ArrayList ZainicjujListeProduktow()
         {
             ArrayList produkty = new ArrayList();
-            Produkt produkt1 = new Produkt("produkt1", 0.23);
-            Produkt produkt2 = new Produkt("produkt2", 2.99);
-            Produkt produkt3 = new Produkt("produkt3", 6.30);
-            Produkt produkt4 = new Produkt("produkt4", 1.76);
+            Produkt produkt1 = new Produkt("produkt1", 54.99);
+            Produkt produkt2 = new Produkt("produkt2", 200.00);
+            Produkt produkt3 = new Produkt("produkt3", 123.30);
+            Produkt produkt4 = new Produkt("produkt4", 70.85);
 
             produkty.Add(produkt1);
             produkty.Add(produkt2);
